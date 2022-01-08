@@ -1,3 +1,3 @@
-struct SwiftPackageTemplate {
+struct SwiftSimctl {
     var text = "Hello, World!"
 }

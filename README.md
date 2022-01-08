@@ -1,5 +1,5 @@
-# swift-package-template
+# Swift Simctl
 
 ![](https://github.com/ahcode0919/swift-package-template/actions/workflows/swift.yml/badge.svg?branch=main)
 
-Baseline template for Swift packages
+Library for retrieving `simctl` utility information and executing commands

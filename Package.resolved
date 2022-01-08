@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Fast",
+        "repositoryURL": "https://github.com/ahcode0919/Fast",
+        "state": {
+          "branch": null,
+          "revision": "f9d504fd58da805fbe6bcf6fc53196df0d412c90",
+          "version": "0.0.4"
+        }
+      },
+      {
+        "package": "swift-shell",
+        "repositoryURL": "https://github.com/ahcode0919/swift-shell",
+        "state": {
+          "branch": null,
+          "revision": "4c03f7cf7911db3634280e9d0fcf866c0553a4e6",
+          "version": "0.0.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
