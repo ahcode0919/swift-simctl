@@ -5,14 +5,14 @@ import PackageDescription
 
 let package = Package(
     name: "swift-simtl",
-    platforms: [.macOS(.v10_13)],
+    platforms: [.macOS(.v10_15)],
     products: [
         .library(
             name: "SwiftSimctl",
             targets: ["SwiftSimctl"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/ahcode0919/swift-shell", from: "0.0.3"),
+        .package(url: "https://github.com/ahcode0919/swift-shell", from: "0.0.4"),
         .package(url: "https://github.com/ahcode0919/Fast", from: "0.0.4"),
     ],
     targets: [
