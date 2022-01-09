@@ -26,10 +26,17 @@ public extension Simctl {
     }
     
     /// Lists available simulator devices
+    /// - Parameters:
+    ///     - booted:
     /// - Throws: Parse error if unable to retrieve and process Simctl output
     /// - Returns: Available devices
-    static func listDevices() throws -> [RuntimeIdentifier: [Device]] {
-        let output = try Shell.execute(.xcrun, args: ["simctl", "list", "devices", "-j"])
+    static func listDevices(booted: Bool = false) throws -> [RuntimeIdentifier: [Device]] {
+        var args = ["simctl", "list", "devices", "-j"]
+        if booted {
+            args.append("booted")
+        }
+
+        let output = try Shell.execute(.xcrun, args: args)
 
         guard let normalizedOutput = output?.chomp().stripMetalError(),
               let data = normalizedOutput.data(using: .utf8) else {
