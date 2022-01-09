@@ -26,10 +26,17 @@ public extension Simctl {
     }
     
     /// Lists available simulator devices
+    /// - Parameters:
+    ///     - booted: filter booted simulators
     /// - Throws: Parse error if unable to retrieve and process Simctl output
-    /// - Returns: Available devices
-    static func listDevices() throws -> [RuntimeIdentifier: [Device]] {
-        let output = try Shell.execute(.xcrun, args: ["simctl", "list", "devices", "-j"])
+    /// - Returns: devices
+    static func listDevices(booted: Bool = false) throws -> [RuntimeIdentifier: [Device]] {
+        var args = ["simctl", "list", "devices", "-j"]
+        if booted {
+            args.append("booted")
+        }
+
+        let output = try Shell.execute(.xcrun, args: args)
 
         guard let normalizedOutput = output?.chomp().stripMetalError(),
               let data = normalizedOutput.data(using: .utf8) else {
@@ -42,7 +49,7 @@ public extension Simctl {
     
     /// Lists available simulator device types
     /// - Throws: Parse error if unable to retrieve and process Simctl output
-    /// - Returns: Available device types
+    /// - Returns: device types
     static func listDeviceTypes() throws -> [DeviceType] {
         let output = try Shell.execute(.xcrun, args: ["simctl", "list", "devicetypes", "-j"])
 
@@ -57,7 +64,7 @@ public extension Simctl {
     
     /// Lists available simulator device pairs
     /// - Throws: Parse error if unable to retrieve and process Simctl output
-    /// - Returns: Available device pairs
+    /// - Returns: device pairs
     static func listPairs() throws -> [PairIdentifier: Pair] {
         let output = try Shell.execute(.xcrun, args: ["simctl", "list", "pairs", "-j"])
 
@@ -72,7 +79,7 @@ public extension Simctl {
     
     /// Lists available simulator runtimes
     /// - Throws: Parse error if unable to retrieve and process Simctl output
-    /// - Returns: Available runtimes
+    /// - Returns: runtimes
     static func listRuntimes() throws -> [Runtime] {
         let output = try Shell.execute(.xcrun, args: ["simctl", "list", "runtimes", "-j"])
 

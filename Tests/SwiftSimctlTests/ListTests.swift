@@ -28,6 +28,21 @@ final class ListTests: XCTestCase {
         XCTAssertNotNil(device?.logPath)
     }
     
+    func testListDevicesBooted() throws {
+        let devices = try Simctl.listDevices(booted: true)
+        XCTAssertGreaterThan(devices.count, 0)
+        
+        let allDevices = devices.flatMap({ $0.value })
+
+        if allDevices.count > 0 {
+            let device = allDevices[0]
+            XCTAssertNotNil(device.dataPath)
+            XCTAssertNotNil(device.deviceTypeIdentifier)
+            XCTAssertNotNil(device.isAvailable)
+            XCTAssertNotNil(device.logPath)
+        }
+    }
+    
     func testListDeviceTypes() throws {
         let deviceTypes = try Simctl.listDeviceTypes()
         XCTAssertGreaterThan(deviceTypes.count, 0)
